@@ -1,12 +1,12 @@
 # Importacion de librerias
 import os
-from fastapi import FastAPI
 from dotenv import load_dotenv
-from .database import Base, engine
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 # Importacion de modelos
 from . import models
+from .database import Base, engine
 
 # Importacion de routers
 from .routers import avances
@@ -35,6 +35,14 @@ Base.metadata.create_all(bind=engine)
 app.include_router(proyectos.router)
 app.include_router(avances.router)
 
-@app.get("/")
-def root():
-    return {"message": "Backend Listo"}
+@app.head("/", summary="Root HEAD endpoint", tags=["general"])
+def root_head():
+    # HEAD no devuelve body, solo headers
+    return Response(
+        status_code=200,
+        headers={
+            "X-Service": "Apps Backend",
+            "X-Version": "1.0.0",
+            "X-Message": "Bienvenido - API activa"
+        }
+    )
