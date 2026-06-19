@@ -7,11 +7,17 @@
 ## Backend
 1. Entrar a la carpeta backend:
    cd backend
-2. Instalar dependencias:
+2. Crear y activar un entorno virtual (recomendado):
+   python -m venv .venv
+   # En Linux/Mac
+   source .venv/bin/activate
+   # En Windows
+   .venv\Scripts\activate
+3. Instalar dependencias:
    pip install -r requirements.txt
-3. Ejecutar el servidor:
+4. Ejecutar el servidor:
    uvicorn app.main:app --reload
-4. El backend estará disponible en http://localhost:8000
+5. El backend estará disponible en http://localhost:8000
 
 ## Frontend
 1. Entrar a la carpeta frontend:

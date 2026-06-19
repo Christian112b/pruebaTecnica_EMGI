@@ -112,10 +112,6 @@ backend/
 - GET /api/proyectos/{id}/avances
   - Devuelve lista de avances con materiales.
 
-### Buenas prácticas
-- Uso de Depends para inyección de DB.
-- Documentación automática con Swagger.
-- Manejo de errores con HTTPException.
 
 ---
 
@@ -141,23 +137,3 @@ frontend/
 
 ---
 
-## 4. README principal
-
-### Backend
-cd backend
-pip install -r requirements.txt
-alembic upgrade head
-uvicorn app.main:app --reload
-
-### Frontend
-cd frontend
-npm install
-npm run dev
-
----
-
-## 5. Criterios de Evaluación
-- Claridad en el análisis (este plan.md).
-- Calidad del código (FastAPI + SQLAlchemy).
-- Integración Frontend-Backend (React hooks + fetch).
-- Buenas prácticas (validaciones, modularidad, README).
