@@ -13,7 +13,7 @@ export default function ConnectionStatus() {
   const checkConnection = async () => {
     const backendUrl = getBackendUrl()
     try {
-      const response = await fetch(`${backendUrl}/api/health`)
+      const response = await fetch(`${backendUrl}/health`)
       if (response.ok) {
         setStatus('online')
       } else {
