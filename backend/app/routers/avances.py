@@ -1,6 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException
+from typing import List
 from sqlalchemy.orm import Session
 from .. import models, schemas, database
+from fastapi import APIRouter, Depends, HTTPException
 
 router = APIRouter(prefix="/api/proyectos", tags=["Avances"])
 
@@ -50,3 +51,17 @@ def crear_avance(id: int, avance: schemas.AvanceCreate, db: Session = Depends(ge
     db.refresh(nuevo_avance)
 
     return nuevo_avance
+
+
+@router.get("/{project_id}/avances", response_model=List[schemas.AvanceResponse])
+def get_avances(project_id: int, db: Session = Depends(get_db)):
+
+    # Validacion de que existe proyecto
+    proyecto = db.query(models.Proyecto).filter(models.Proyecto.id == project_id).first()
+
+    if not proyecto:
+        raise HTTPException(status_code=404, detail="Proyecto no encontrado")
+    
+    # Obtener avances ligados
+    avances = db.query(models.Avance).filter(models.Avance.proyecto_id == project_id).all()
+    return avances

@@ -1,0 +1,70 @@
+/* Contenedor */
+.table-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #1C1C1C; /* negro suave */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #2A2A2A; /* gris oscuro */
+  color: #E0E0E0;            /* texto gris claro */
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+
+/* Encabezados */
+th {
+  background-color: #333333; /* gris más profundo */
+  color: #FF6F3C;            /* naranja acento */
+  font-weight: 600;
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 2px solid #444;
+  letter-spacing: 0.5px;
+}
+
+/* Celdas */
+td {
+  padding: 12px 18px;
+  border-bottom: 1px solid #444;
+}
+
+/* Filas alternadas */
+tr:nth-child(even) {
+  background-color: #242424;
+}
+
+/* Hover en filas */
+tr:hover {
+  background-color: #383838;
+  transition: background 0.2s ease-in-out;
+}
+
+/* Botones dentro de la tabla */
+table button {
+  background-color: #FF6F3C; /* naranja vibrante */
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.3s, transform 0.2s;
+}
+
+table button:hover {
+  background-color: #E65C2E; /* naranja más profundo */
+  transform: scale(1.05);
+}
+
+table button:active {
+  background-color: #CC4A20; /* naranja intenso */
+  transform: scale(0.95);
+}

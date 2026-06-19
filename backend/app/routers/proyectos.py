@@ -36,3 +36,11 @@ def crear_producto(proyecto: schemas.ProyectoCreate, db: Session = Depends(get_d
 @router.get("/", response_model=list[schemas.ProyectoResponse])
 def read_items(db: Session = Depends(get_db)):
     return db.query(models.Proyecto).all()
+
+# Ruta Get para un proyecto por ID
+@router.get("/{project_id}", response_model=schemas.ProyectoResponse)
+def read_proyecto(project_id: int, db: Session = Depends(get_db)):
+    proyecto = db.query(models.Proyecto).filter(models.Proyecto.id == project_id).first()
+    if not proyecto:
+        raise HTTPException(status_code=404, detail="Proyecto no encontrado")
+    return proyecto
