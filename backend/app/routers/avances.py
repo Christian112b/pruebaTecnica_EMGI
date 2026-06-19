@@ -29,13 +29,13 @@ def crear_avance(id: int, avance: schemas.AvanceCreate, db: Session = Depends(ge
         fecha = avance.fecha,
         porcentaje_avance = avance.porcentaje_avance,
         notas = avance.notas,
-        costos_estimado = costos_estimado
+        costo_estimado = costos_estimado
     ) 
 
     #Agregar avance en db
     db.add(nuevo_avance)
     db.commit()
-    db.refresh()
+    db.refresh(nuevo_avance)
 
     # Creacion de lista de materiales
     for mat in avance.materiales:
@@ -47,6 +47,6 @@ def crear_avance(id: int, avance: schemas.AvanceCreate, db: Session = Depends(ge
         #Agregar material en db
         db.add(nuevo_material)
     db.commit()
-    db.refresh()
+    db.refresh(nuevo_avance)
 
     return nuevo_avance
