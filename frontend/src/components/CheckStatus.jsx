@@ -5,7 +5,7 @@ export default function ConnectionStatus() {
 
   const getBackendUrl = () => {
     if (import.meta.env.DEV) {
-      return 'http://localhost:8000'
+      return 'http://localhost:8000/api'
     }
     return window.location.origin
   }
