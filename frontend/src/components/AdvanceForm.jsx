@@ -1,11 +1,14 @@
 import { useState } from "react";
 import api from "../api";
 
-export default function AdvanceForm({ projectId, onSuccess }) {
-  const [fecha, setFecha] = useState("");
-  const [porcentaje, setPorcentaje] = useState(0);
+export default function AdvanceForm({ projectId, onSuccess, initialPorcentaje }) {
+  const today = new Date().toISOString().split("T")[0];
+
+  const [fecha, setFecha] = useState(today);
+  const [porcentaje, setPorcentaje] = useState(initialPorcentaje || 0);
   const [notas, setNotas] = useState("");
   const [materiales, setMateriales] = useState([{ nombre: "", cantidad: 0 }]);
+
 
   const handleMaterialChange = (index, field, value) => {
     const newMaterials = [...materiales];
@@ -24,21 +27,46 @@ export default function AdvanceForm({ projectId, onSuccess }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validaciones
+    if (!fecha) {
+      alert("La fecha es obligatoria");
+      return;
+    }
+
+    if (porcentaje < initialPorcentaje || porcentaje > 100) {
+      alert(`El porcentaje debe ser entre ${initialPorcentaje} y 100 ❌`);
+      return;
+    }
+
+    if (materiales.some(m => !m.nombre || Number(m.cantidad) <= 0)) {
+      alert("Todos los materiales deben tener nombre y cantidad mayor a 0 ");
+      return;
+    }
+
     try {
       const body = {
         fecha,
-        porcentaje_avance: porcentaje,
+        porcentaje_avance: Number(porcentaje),
         notas,
-        materiales
+        materiales: materiales.map(m => ({
+          nombre: m.nombre,
+          cantidad: Number(m.cantidad)
+        }))
       };
+
       await api.post(`/proyectos/${projectId}/avances`, body);
-      alert("Avance agregado correctamente ✅");
+      alert("Avance agregado correctamente");
       if (onSuccess) onSuccess();
+      window.location.reload();
+
+      
     } catch (err) {
       console.error("Error creando avance:", err);
-      alert("Error al crear avance ❌");
+      alert("Error al crear avance");
     }
   };
+
 
   return (
     <form onSubmit={handleSubmit}>

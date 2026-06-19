@@ -9,10 +9,13 @@ class ProyectoCreate(BaseModel):
     fecha_inicio: Optional[date]
     fecha_fin: Optional[date]
 
-class ProyectoResponse(ProyectoCreate):
+class ProyectoResponse(BaseModel):
     id: int
-    class Config:
-        from_attributes = True
+    nombre: str
+    costo_base: float
+    fecha_inicio: date
+    fecha_fin: date
+    porcentaje_avance: int   
 
 
 # Schemas de Materiales

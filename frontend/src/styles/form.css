@@ -8,6 +8,11 @@ form {
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
 
+form h2 {
+  color: #FF6F3C; /* naranja acento */
+  margin-bottom: 1rem;
+}
+
 label {
   font-weight: 500;
   color: #FF6F3C; /* naranja acento */
@@ -24,7 +29,7 @@ input, textarea, select {
 }
 
 input:focus, textarea:focus, select:focus {
-  border-color: #FF6F3C; /* naranja acento */
+  border-color: #FF6F3C;
   box-shadow: 0 0 6px rgba(255, 111, 60, 0.6);
   outline: none;
 }
@@ -34,9 +39,9 @@ textarea {
   resize: vertical;
 }
 
-/* Botón de enviar */
-form button[type="submit"] {
-  background-color: #FF6F3C; /* naranja vibrante */
+form button[type="submit"],
+form button {
+  background-color: #FF6F3C;
   color: #fff;
   border: none;
   padding: 10px 16px;
@@ -46,12 +51,26 @@ form button[type="submit"] {
   transition: background 0.3s, transform 0.2s;
 }
 
-form button[type="submit"]:hover {
-  background-color: #E65C2E; /* naranja más profundo */
+form button[type="submit"]:hover,
+form button:hover {
+  background-color: #E65C2E;
   transform: scale(1.05);
 }
 
-form button[type="submit"]:active {
-  background-color: #CC4A20; /* naranja intenso */
+form button[type="submit"]:active,
+form button:active {
+  background-color: #CC4A20;
   transform: scale(0.95);
+}
+
+/* Botón eliminar dentro de formularios (ej. materiales) */
+form button.delete {
+  background-color: #CC4A20;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+form button.delete:hover {
+  background-color: #E65C2E;
 }
