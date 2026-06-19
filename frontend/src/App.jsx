@@ -8,6 +8,7 @@ import ProjectForm from './components/ProjectFrom';
 import ProjectsTable from "./components/ProjectsTable";
 import ProjectDetails from "./components/ProjectDetails";
 import AdvanceForm from "./components/AdvanceForm";
+import ConnectionStatus from './components/CheckStatus'
 
 function App() {
   const [selectedProjectId, setSelectedProjectId] = useState(null);
@@ -24,7 +25,13 @@ function App() {
   };
 
   return (
+
+    
+
     <div className="app-container">
+
+      <ConnectionStatus />
+
       <header className="app-header">
         <h1>Gestión de Avances</h1>
         <button onClick={() => openModal("projectForm")}>+ Agregar Proyecto</button>

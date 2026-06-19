@@ -46,3 +46,7 @@ def root_head():
             "X-Message": "Bienvenido - API activa"
         }
     )
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok", "message": "Backend funcionando correctamente"}
