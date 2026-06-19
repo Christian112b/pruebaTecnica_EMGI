@@ -1,45 +1,44 @@
-# Backend Endpoints
+# Endpoints del Backend
 
-## Base URL: http://localhost:8000 (or as configured)
+## URL Base: http://localhost:8000 (o según configuración)
 
-### Root Endpoint
+### Endpoint Raíz
 - **GET /** 
-  - Description: Returns a message indicating the backend is ready.
-  - Response: `{ "message": "Backend Listo" }`
+  - Devuelve: `{ "message": "Backend Listo" }`
 
-### Projects Endpoints (under `/api/proyectos`)
+### Endpoints de Proyectos (en `/api/proyectos`)
 - **POST /** 
-  - Description: Create a new project.
-  - Request Body: `ProyectoCreate` schema (nombre, costo_base, fecha_inicio, fecha_fin)
-  - Response: `ProyectoResponse` schema (id, nombre, costo_base, fecha_inicio, fecha_fin, porcentaje_avance)
+  - Crear un nuevo proyecto.
+  - Envío: datos del proyecto (nombre, costo_base, fecha_inicio, fecha_fin)
+  - Respuesta: datos del proyecto creado (incluye id y porcentaje_avance inicial 0)
 
 - **GET /** 
-  - Description: Retrieve a list of all projects with their latest advance percentage.
-  - Response: List of `ProyectoResponse` objects.
+  - Listar todos los proyectos con su último porcentaje de avance.
+  - Respuesta: lista de proyectos.
 
-- **GET /{project_id}** 
-  - Description: Retrieve a specific project by its ID with its latest advance percentage.
-  - Path Parameter: `project_id` (integer)
-  - Response: `ProyectoResponse` object.
+- **GET /{id}** 
+  - Obtener un proyecto específico por su ID.
+  - Parámetro: `id` (número)
+  - Respuesta: datos del proyecto.
 
-- **DELETE /{project_id}** 
-  - Description: Delete a project by its ID.
-  - Path Parameter: `project_id` (integer)
-  - Response: Status 204 (No Content) with a JSON message: `{ "detail": "Proyecto eliminado correctamente" }`
+- **DELETE /{id}** 
+  - Eliminar un proyecto por su ID.
+  - Parámetro: `id` (número)
+  - Respuesta: confirmación de eliminación.
 
-### Advances Endpoints (under `/api/proyectos`)
+### Endpoints de Avances (en `/api/proyectos`)
 - **POST /{id}/avances** 
-  - Description: Create a new advance for a project.
-  - Path Parameter: `id` (integer, project ID)
-  - Request Body: `AvanceCreate` schema (fecha, porcentaje_avance, notas, materiales list)
-  - Response: `AvanceResponse` object (includes id, proyecto_id, fecha, porcentaje_avance, notas, costo_estimado, and list of materials)
+  - Añadir un avance a un proyecto.
+  - Parámetro: `id` (ID del proyecto)
+  - Envío: fecha, porcentaje_avance, notas, lista de materiales
+  - Respuesta: datos del avance creado.
 
-- **GET /{project_id}/avances** 
-  - Description: Retrieve all advances for a specific project.
-  - Path Parameter: `project_id` (integer)
-  - Response: List of `AvanceResponse` objects.
+- **GET /{id}/avances** 
+  - Listar todos los avances de un proyecto.
+  - Parámetro: `id` (ID del proyecto)
+  - Respuesta: lista de avances.
 
-## Notes
-- The API is built with FastAPI and uses SQLAlchemy for ORM.
-- The schemas (`ProyectoCreate`, `ProyectoResponse`, `AvanceCreate`, `AvanceResponse`) are defined in `app/schemas.py`.
-- The database models are defined in `app/models.py`.
+## Notas
+- API construida con FastAPI y SQLAlchemy.
+- Esquemas en `app/schemas.py`.
+- Modelos en `app/models.py`.
