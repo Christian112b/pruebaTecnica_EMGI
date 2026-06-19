@@ -5,7 +5,7 @@
 ### Requisitos funcionales
 - Registrar avances de obra asociados a un proyecto.
     - El sistema debe de permitir seleccionar un proyecto existente
-    - Cada avance se asocia a un proyecto mediante su ID (UUID para evitar conflictos de multiusuario)
+    - Cada avance se asocia a un proyecto mediante su ID
     - Validar el registro de avance solo si existe un proyecto.
 
 
